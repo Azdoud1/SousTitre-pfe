@@ -1,0 +1,52 @@
+.VideoPlayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+
+}
+body{
+    background-color: #1c1c1c;
+}
+
+.back {
+    margin: 1rem;
+}
+
+.back a {
+    text-decoration: none;
+    color: #f8f3f3;
+    font-size: 20px;
+}
+
+.back i {
+    margin-right: 0.5rem;
+}
+
+.video-container {
+    margin-top: 2rem;
+    width: 80%;
+    max-width: 800px;
+}
+
+.video-info {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-info h4 {
+    color: #c76b02;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+.redirect-btn {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-end;
+    display: flex;
+
+
+}
+

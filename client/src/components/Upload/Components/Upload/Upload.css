@@ -1,0 +1,155 @@
+h2 {
+    color: #2828d2;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    margin-top: 80px;
+}
+body{
+    background-color: #6e6e7c;
+   background-image: url("../../../../image/imag.jpg") ;
+    background-size: cover;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-control {
+    margin: 1rem 0;
+}
+
+label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+textarea {
+    resize: none;
+}
+
+.inner-input {
+    position: relative;
+}
+
+.inner-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.inner-label:hover {
+    background-color: #ddd;
+}
+
+.input-control.upload-con {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.input-control.upload-con label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.inner-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgb(74 74 74);
+    border-radius: 5px;
+    padding: 1rem;
+    cursor: pointer;
+    height: 90px;
+    position: relative;
+    padding: 1rem;
+}
+
+.inner-label {
+    cursor: pointer;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(74 74 74);
+}
+
+
+#video {
+    display: none;
+}
+
+.upload-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #00b894;
+    transition: width 0.3s ease-in-out;
+  }  
+
+@media only screen and (max-width: 600px) {
+    .input-control.upload-con {
+        margin-top: 10px;
+    }
+
+    .upload-btn {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: flex-end;
+        display: flex;
+
+
+    }
+
+    .back i {
+        margin-right: 0.5rem;
+    }
+    .upload-btn Button {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}
