@@ -1,0 +1,388 @@
+Transcription with Word Durations and Metadata:
+0,0-
+l'�pisode pr�c�dent on a fait le
+-0,2
+
+0,2-
+mod�le d'user maintenant on va s'occuper
+-0,6
+
+0,6-
+du Cocktail Club toujours pareil je
+-0,9
+
+0,9-
+cr�e un fichier unitaire encore une
+-0,12
+
+0,12-
+fois par convention papa force pas
+-0,15
+
+0,15-
+forc�ment pareil mais par convention un
+-0,18
+
+0,18-
+mod�le repr�sente le l'objet de fa�on
+-0,22
+
+0,22-
+unitaire du coup ben je vais
+-0,24
+
+0,24-
+copier coller up ce que j'ai
+-0,26
+
+0,26-
+fait dans midi par contre j'ai
+-0,29
+
+0,29-
+apport� des modifications alors toujours pareil
+-0,33
+
+0,33-
+on ram�ne le DA Tati decicco
+-0,36
+
+0,36-
+live on ram�ne la base donn�e
+-0,38
+
+0,38-
+par contre j'ai vu que j'ai
+-0,40
+
+0,40-
+fait une petite erreur j'en suis
+-0,43
+
+0,43-
+on est sensible � la casse
+-0,45
+
+0,45-
+ici j'ai mis un des minuscules
+-0,48
+
+0,48-
+alors que Mariam C et D
+-0,50
+
+0,50-
+et B majuscule app voil� sinon
+-0,52
+
+0,52-
+�a ne passera pas ici donc
+-0,54
+
+0,54-
+le mod�le cocktail toujours pareil aussi
+-0,58
+
+0,58-
+les mod�les il commence par les
+-1,1
+
+1,1-
+lettres majuscules c'est utile pour pour
+-1,4
+
+1,4-
+louer rem parce que du coup
+-1,7
+
+1,7-
+quand il va commencer � synchroniser
+-1,10
+
+1,10-
+et apr�s il pr�f�re se ce
+-1,12
+
+1,12-
+formalisme l� encore une fois vous
+-1,15
+
+1,15-
+pouvez tout � fait changer c'est
+-1,18
+
+1,18-
+vraiment pas un probl�me donc ici
+-1,20
+
+1,20-
+ce sera user Heidi donc c'est
+-1,23
+
+1,23-
+Anne integer 10 �videmment Intyre de
+-1,26
+
+1,26-
+10 je n'autorise pas la valeur
+-1,29
+
+1,29-
+par d�faut il y a pas
+-1,30
+
+1,30-
+de probl�me je n'autorise pas le
+-1,33
+
+1,33-
+nul on a dit qu'il y
+-1,35
+
+1,35-
+avait un nom description recette donc
+-1,38
+
+1,38-
+�a se termine ici pareil je
+-1,40
+
+1,40-
+vais laisser le soft delete et
+-1,43
+
+1,43-
+je je j'exporte pardon mais variables
+-1,46
+
+1,46-
+cocktail ici c'est impeccable donc l'id�e
+-1,50
+
+1,50-
+�a c'est bon le nom et
+-1,51
+
+1,51-
+baisser du string sans s'en va
+-1,54
+
+1,54-
+laisser alors ensuite up la description
+-1,57
+
+1,57-
+dans la base de donn�es �a
+-2,0
+
+2,0-
+doit �tre du long texte ici
+-2,2
+
+2,2-
+pour ses coll�gues ce sera texte
+-2,5
+
+2,5-
+est la recette je vais faire
+-2,7
+
+2,7-
+pareil du texte description c'est pas
+-2,10
+
+2,10-
+unique j'en ai pas besoin je
+-2,13
+
+2,13-
+vais lancer aussi un d�faut de
+-2,15
+
+2,15-
+value � rien moi l� et
+-2,17
+
+2,17-
+la recette alors j'enl�ve �a et
+-2,20
+
+2,20-
+pareil c'est qu'il faut le value
+-2,22
+
+2,22-
+rien le nul �videmment on peut
+-2,25
+
+2,25-
+encore mettre des param�tres mais l�
+-2,28
+
+2,28-
+pour le pour l'exemple en fait
+-2,31
+
+2,31-
+du simple ok �a c'est bon
+-2,33
+
+2,33-
+c'est impeccable j'exporte bien la chose
+-2,36
+
+2,36-
+ok alors si vous voulez si
+-2,39
+
+2,39-
+vous cherchez un type en g�n�ral
+-2,41
+
+2,41-
+c'est pas bien compliqu� sur c'est
+-2,44
+
+2,44-
+cool eyes fid�le et la dent
+-2,47
+
+2,47-
+de faire si Queen live mod�le
+-2,49
+
+2,49-
+de tomber assez rapidement on va
+-2,52
+
+2,52-
+faire data type moi l� et
+-2,54
+
+2,54-
+ici donc les diff�rents types utiliser
+-2,57
+
+2,57-
+particulier live et la correspondance de
+-3,1
+
+3,1-
+ce c�t�-l� dans la base de
+-3,3
+
+3,3-
+donn�es ou si vous si vous
+-3,5
+
+3,5-
+cherchez effectivement comment dire � ses
+-3,9
+
+3,9-
+coll�gues de ce qui correspond aux
+-3,12
+
+3,12-
+bases de donn�es vous avez tout
+-3,14
+
+3,14-
+ce qu'il faut ici et vous
+-3,16
+
+3,16-
+en avez pas mal certains sont
+-3,19
+
+3,19-
+sp�cifiques par exemple pour prendre qu'est-ce
+-3,23
+
+3,23-
+qu elle puisque si coll�ge prends
+-3,26
+
+3,26-
+en place prends en terme de
+-3,28
+
+3,28-
+dialecte la base de donn�es pansexuelle
+-3,32
+
+3,32-
+mais la plupart sont g�n�riques donc
+-3,35
+
+3,35-
+vous avez absolument tout ce qu'il
+-3,38
+
+3,38-
+faut ici et encore quelques exemples
+-3,41
+
+3,41-
+de sous tout se situe �
+-3,43
+
+3,43-
+peu pr�s ici vous avez une
+-3,45
+
+3,45-
+fois que vous �tes rentr�s dans
+-3,48
+
+3,48-
+les data type et ben vous
+-3,50
+
+3,50-
+avez d�finition les mod�les et o�
+-3,53
+
+3,53-
+on en fera et tout ce
+-3,54
+
+3,54-
+qu'il faut pour tout ce qu'il
+-3,57
+
+3,57-
+faut pour d�finir correctement vous mod�le
+-4,1
+
+4,1-
+ok donc nos mod�les sont r�alis�s
+-4,3
+
+4,3-
+user et cocktails on fait les
+-4,6
+
+4,6-
+export et ben maintenant on a
+-4,8
+
+4,8-
+plus qu ' � brancher tout
+-4,10
+
+4,10-
+�a dans du routage donc par
+-4,13
+
+4,13-
+les diff�rentes ressources dans la prochaine
+-4,17
+
+4,17-
+video on va s'occuper du routage
+-4,19
+
+4,19-
+du routage de la ressource user
+-4,21
