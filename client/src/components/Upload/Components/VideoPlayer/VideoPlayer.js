@@ -19,7 +19,16 @@ function VideoPlayer() {
     const video = videos.find((vid)=> {
         return vid._id === id
     })
-    //refs
+    const textareaRef = useRef(null);
+    const [text, setText] = useState({ text: '' }); 
+
+    useEffect(() => {
+      if (video) {
+        setText({ text: video.text });
+      }
+    }, [video]);
+    
+      //refs
     const videoConRef = useRef(null);
     const playerRef = React.useRef(null);
 
@@ -66,38 +75,61 @@ function VideoPlayer() {
             }
         }
     }
-    
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(`http://localhost:3000/api/text/`+localStorage.getItem('user'));
-            
-          console.log(response.data) 
-          setTextData(response.data);
-          } catch (error) {
-            console.log('Error fetching data:', error);
-          }
-        };
-        fetchData();
-    }, []);
-    
 
+    const modificationHandler = () => {
+        const textareaElement = textareaRef.current; 
+        if (textareaElement) {
+          const textareaValue = textareaElement.value; 
+          console.log(textareaValue); 
+      axios
+      .post('http://localhost:3000/api/videotextupdate', { id , text: textareaValue })
+      .then((response) => {
+        // Handle the response from the server
+        console.log(response.data); // Response from the server
+        // Perform additional actions as needed
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error(error);
+        // Perform error handling as needed
+      });
+    }
+        
+      }
+      
+
+//  const modificationHandler =() =>{
+// //     setModification((modification) => !modification)
+// //     console.log("modification")
+//      console.log(text.text)
+//  }
     return (
 
         
-<div>
+<div className='my-container'>
             <div className="VideoPlayer" >
             <Navbar/>
-            <div className="back">
-                <Link to={'/user/videos/'}><i className="fas fa-arrow-left"></i>Back to Videos</Link>
-            </div>
+            <div className="eidt-video">
             <div className="video-container" ref={videoConRef}>
                 <VideoJS options={videoOptions} onReady={handlePlayerReady} />
             </div>
-            <div className="video-info">
-                <h4>{video?.text}</h4>
-
-            </div>
+            <div className="textarea">
+                   <textarea
+                        ref={textareaRef}
+                        type="text"
+                        id="transcription" cols="30" rows="15"
+                        value={text.text}
+                        onChange={(e)=>{                            
+                        setText(e.target.value)
+                    console.log(text.text)} }
+                    >
+                    </textarea>
+                    <div><button onClick={modificationHandler}>Update
+                    </button>
+                    </div>
+                    </div>
+                
+                    </div>
             </div>
 </div>
         

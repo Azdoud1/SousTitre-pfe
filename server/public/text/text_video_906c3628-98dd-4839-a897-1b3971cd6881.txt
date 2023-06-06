@@ -1,0 +1,388 @@
+Transcription with Word Durations and Metadata:
+0.0,0.0-
+l'�pisode pr�c�dent on a fait le
+-0.0,2.7702
+
+0.0,2.7702-
+mod�le d'user maintenant on va s'occuper
+-0.0,6.3612
+
+0.0,6.3612-
+du Cocktail Club toujours pareil je
+-0.0,9.4392
+
+0.0,9.4392-
+cr�e un fichier unitaire encore une
+-0.0,12.517199999999999
+
+0.0,12.517199999999999-
+fois par convention papa force pas
+-0.0,15.4926
+
+0.0,15.4926-
+forc�ment pareil mais par convention un
+-0.0,18.980999999999998
+
+0.0,18.980999999999998-
+mod�le repr�sente le l'objet de fa�on
+-0.0,22.2642
+
+0.0,22.2642-
+unitaire du coup ben je vais
+-0.0,24.624
+
+0.0,24.624-
+copier coller up ce que j'ai
+-0.0,26.9838
+
+0.0,26.9838-
+fait dans midi par contre j'ai
+-0.0,29.5488
+
+0.0,29.5488-
+apport� des modifications alors toujours pareil
+-0.0,33.858
+
+0.0,33.858-
+on ram�ne le DA Tati decicco
+-0.0,36.2178
+
+0.0,36.2178-
+live on ram�ne la base donn�e
+-0.0,38.6802
+
+0.0,38.6802-
+par contre j'ai vu que j'ai
+-0.0,40.9374
+
+0.0,40.9374-
+fait une petite erreur j'en suis
+-0.0,43.7076
+
+0.0,43.7076-
+on est sensible � la casse
+-0.0,45.8622
+
+0.0,45.8622-
+ici j'ai mis un des minuscules
+-0.0,48.4272
+
+0.0,48.4272-
+alors que Mariam C et D
+-0.0,50.274
+
+0.0,50.274-
+et B majuscule app voil� sinon
+-0.0,52.839
+
+0.0,52.839-
+�a ne passera pas ici donc
+-0.0,54.9936
+
+0.0,54.9936-
+le mod�le cocktail toujours pareil aussi
+-0.0,58.5846
+
+0.0,58.5846-
+les mod�les il commence par les
+-1.0,1.252200000000002
+
+1.0,1.252200000000002-
+lettres majuscules c'est utile pour pour
+-1.0,4.843199999999996
+
+1.0,4.843199999999996-
+louer rem parce que du coup
+-1.0,7.100399999999993
+
+1.0,7.100399999999993-
+quand il va commencer � synchroniser
+-1.0,10.280999999999992
+
+1.0,10.280999999999992-
+et apr�s il pr�f�re se ce
+-1.0,12.332999999999998
+
+1.0,12.332999999999998-
+formalisme l� encore une fois vous
+-1.0,15.308399999999992
+
+1.0,15.308399999999992-
+pouvez tout � fait changer c'est
+-1.0,18.078599999999994
+
+1.0,18.078599999999994-
+vraiment pas un probl�me donc ici
+-1.0,20.951399999999992
+
+1.0,20.951399999999992-
+ce sera user Heidi donc c'est
+-1.0,23.413799999999995
+
+1.0,23.413799999999995-
+Anne integer 10 �videmment Intyre de
+-1.0,26.594399999999993
+
+1.0,26.594399999999993-
+10 je n'autorise pas la valeur
+-1.0,29.15939999999999
+
+1.0,29.15939999999999-
+par d�faut il y a pas
+-1.0,30.800999999999988
+
+1.0,30.800999999999988-
+de probl�me je n'autorise pas le
+-1.0,33.57119999999999
+
+1.0,33.57119999999999-
+nul on a dit qu'il y
+-1.0,35.11019999999999
+
+1.0,35.11019999999999-
+avait un nom description recette donc
+-1.0,38.393399999999986
+
+1.0,38.393399999999986-
+�a se termine ici pareil je
+-1.0,40.65059999999998
+
+1.0,40.65059999999998-
+vais laisser le soft delete et
+-1.0,43.21559999999998
+
+1.0,43.21559999999998-
+je je j'exporte pardon mais variables
+-1.0,46.498799999999974
+
+1.0,46.498799999999974-
+cocktail ici c'est impeccable donc l'id�e
+-1.0,50.19239999999998
+
+1.0,50.19239999999998-
+�a c'est bon le nom et
+-1.0,51.936599999999984
+
+1.0,51.936599999999984-
+baisser du string sans s'en va
+-1.0,54.50159999999998
+
+1.0,54.50159999999998-
+laisser alors ensuite up la description
+-1.0,57.98999999999998
+
+1.0,57.98999999999998-
+dans la base de donn�es �a
+-2.0,0.14459999999998274
+
+2.0,0.14459999999998274-
+doit �tre du long texte ici
+-2.0,2.40179999999998
+
+2.0,2.40179999999998-
+pour ses coll�gues ce sera texte
+-2.0,5.171999999999983
+
+2.0,5.171999999999983-
+est la recette je vais faire
+-2.0,7.531799999999976
+
+2.0,7.531799999999976-
+pareil du texte description c'est pas
+-2.0,10.81499999999997
+
+2.0,10.81499999999997-
+unique j'en ai pas besoin je
+-2.0,13.174799999999976
+
+2.0,13.174799999999976-
+vais lancer aussi un d�faut de
+-2.0,15.739799999999974
+
+2.0,15.739799999999974-
+value � rien moi l� et
+-2.0,17.48399999999998
+
+2.0,17.48399999999998-
+la recette alors j'enl�ve �a et
+-2.0,20.151599999999974
+
+2.0,20.151599999999974-
+pareil c'est qu'il faut le value
+-2.0,22.921799999999962
+
+2.0,22.921799999999962-
+rien le nul �videmment on peut
+-2.0,25.48679999999996
+
+2.0,25.48679999999996-
+encore mettre des param�tres mais l�
+-2.0,28.667399999999958
+
+2.0,28.667399999999958-
+pour le pour l'exemple en fait
+-2.0,31.232399999999956
+
+2.0,31.232399999999956-
+du simple ok �a c'est bon
+-2.0,33.28439999999995
+
+2.0,33.28439999999995-
+c'est impeccable j'exporte bien la chose
+-2.0,36.875399999999956
+
+2.0,36.875399999999956-
+ok alors si vous voulez si
+-2.0,39.029999999999944
+
+2.0,39.029999999999944-
+vous cherchez un type en g�n�ral
+-2.0,41.80019999999993
+
+2.0,41.80019999999993-
+c'est pas bien compliqu� sur c'est
+-2.0,44.77559999999994
+
+2.0,44.77559999999994-
+cool eyes fid�le et la dent
+-2.0,47.03279999999995
+
+2.0,47.03279999999995-
+de faire si Queen live mod�le
+-2.0,49.495199999999954
+
+2.0,49.495199999999954-
+de tomber assez rapidement on va
+-2.0,52.26539999999994
+
+2.0,52.26539999999994-
+faire data type moi l� et
+-2.0,54.317399999999935
+
+2.0,54.317399999999935-
+ici donc les diff�rents types utiliser
+-2.0,57.703199999999924
+
+2.0,57.703199999999924-
+particulier live et la correspondance de
+-3.0,1.2941999999999325
+
+3.0,1.2941999999999325-
+ce c�t�-l� dans la base de
+-3.0,3.4487999999999204
+
+3.0,3.4487999999999204-
+donn�es ou si vous si vous
+-3.0,5.603399999999908
+
+3.0,5.603399999999908-
+cherchez effectivement comment dire � ses
+-3.0,9.296999999999912
+
+3.0,9.296999999999912-
+coll�gues de ce qui correspond aux
+-3.0,12.27239999999992
+
+3.0,12.27239999999992-
+bases de donn�es vous avez tout
+-3.0,14.939999999999912
+
+3.0,14.939999999999912-
+ce qu'il faut ici et vous
+-3.0,16.991999999999905
+
+3.0,16.991999999999905-
+en avez pas mal certains sont
+-3.0,19.454399999999907
+
+3.0,19.454399999999907-
+sp�cifiques par exemple pour prendre qu'est-ce
+-3.0,23.660999999999916
+
+3.0,23.660999999999916-
+qu elle puisque si coll�ge prends
+-3.0,26.53379999999993
+
+3.0,26.53379999999993-
+en place prends en terme de
+-3.0,28.79099999999994
+
+3.0,28.79099999999994-
+dialecte la base de donn�es pansexuelle
+-3.0,32.27939999999995
+
+3.0,32.27939999999995-
+mais la plupart sont g�n�riques donc
+-3.0,35.45999999999995
+
+3.0,35.45999999999995-
+vous avez absolument tout ce qu'il
+-3.0,38.43539999999996
+
+3.0,38.43539999999996-
+faut ici et encore quelques exemples
+-3.0,41.61599999999996
+
+3.0,41.61599999999996-
+de sous tout se situe �
+-3.0,43.46279999999996
+
+3.0,43.46279999999996-
+peu pr�s ici vous avez une
+-3.0,45.61739999999995
+
+3.0,45.61739999999995-
+fois que vous �tes rentr�s dans
+-3.0,48.28499999999994
+
+3.0,48.28499999999994-
+les data type et ben vous
+-3.0,50.33699999999993
+
+3.0,50.33699999999993-
+avez d�finition les mod�les et o�
+-3.0,53.209799999999944
+
+3.0,53.209799999999944-
+on en fera et tout ce
+-3.0,54.851399999999956
+
+3.0,54.851399999999956-
+qu'il faut pour tout ce qu'il
+-3.0,57.31379999999996
+
+3.0,57.31379999999996-
+faut pour d�finir correctement vous mod�le
+-4.0,1.1099999999999568
+
+4.0,1.1099999999999568-
+ok donc nos mod�les sont r�alis�s
+-4.0,3.982799999999969
+
+4.0,3.982799999999969-
+user et cocktails on fait les
+-4.0,6.445199999999971
+
+4.0,6.445199999999971-
+export et ben maintenant on a
+-4.0,8.907599999999974
+
+4.0,8.907599999999974-
+plus qu ' � brancher tout
+-4.0,10.959599999999966
+
+4.0,10.959599999999966-
+�a dans du routage donc par
+-4.0,13.216799999999978
+
+4.0,13.216799999999978-
+les diff�rentes ressources dans la prochaine
+-4.0,17.218199999999968
+
+4.0,17.218199999999968-
+video on va s'occuper du routage
+-4.0,19.988399999999956
+
+4.0,19.988399999999956-
+du routage de la ressource user
+-4.0,21.732599999999934

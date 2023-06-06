@@ -6,7 +6,6 @@ const GlobalContext = React.createContext();
 const LOADING = 'LOADING'
 const SET_VIDEOS = 'SET_VIDEOS'
 
-
 const reducer = (state, action) => {
     switch(action.type){
         case LOADING:
@@ -25,6 +24,7 @@ const reducer = (state, action) => {
                 ]
                 
             }
+            
         default:
             return state
     }
@@ -38,6 +38,7 @@ export const GlobalProvider = ({children}) => {
     const initialState = {
         videos: [],
         loading: false,
+        
     }
 
     const [state, dispatch] = React.useReducer(reducer, initialState)
@@ -49,11 +50,22 @@ export const GlobalProvider = ({children}) => {
             const data = await res.json()
 
             dispatch({type: SET_VIDEOS, payload: data.videos})
+            console.log(data.videos)
         } catch (error) {
             
         }
     }
-    
+    // const getLastVideo = async () => {
+    //     try {
+    //         const res = await fetch('http://localhost:3000/api/lastvideo');
+    //         const data = await res.json()
+
+    //         dispatch({type: SET_VIDEOS, payload: data.videos})
+
+    //     } catch (error) {
+            
+    //     }
+    // }
     useEffect(() => {
         getAllVideos()
     }, [])
@@ -61,7 +73,7 @@ export const GlobalProvider = ({children}) => {
     return (
         <GlobalContext.Provider value={{
             ...state,
-            getAllVideos
+            getAllVideos,
         }}>
             {children}
         </GlobalContext.Provider>

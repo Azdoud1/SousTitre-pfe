@@ -1,3 +1,0 @@
-Transcription with Word Durations:
-Duration: l seconds, Segment: '
-Error in transcription: Invalid item format

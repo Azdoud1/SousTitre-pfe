@@ -1,274 +1,3 @@
-// const VideoSchema = require('../models/VideoModel');
-// const TextSchema = require('../models/fichierstext');
-// const ffmpeg = require('fluent-ffmpeg');
-// const fs = require('fs');
-// const path = require('path');
-// const { spawn } = require('child_process');
-
-// ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-
-// exports.addVideo = async (req, res) => {
-//   const { title, description } = req.body;
-//   const videoPath = req.file.path;
-//   const videoExt = req.file.mimetype.split('/')[1];
-//   const videoFileName = req.file.filename;
-
-//   const audioFileName = 'audio_' + videoFileName.split('.')[0] + '.wav';
-//   const audioPath = path.join(__dirname, '../public/audio', audioFileName);
-
-//   try {
-//     ffmpeg(videoPath)
-//       .toFormat('wav')
-//       .on('error', (err) => {
-//         console.log(`Error converting video to audio: ${err}`);
-//         res.status(500).json({
-//           message: 'Error converting video to audio',
-//           error: err
-//         });
-//       })
-//       .on('end', async () => {
-//         const video = new VideoSchema({
-//           title,
-//           description,
-//           filename: videoFileName,
-//           videoUrl: videoPath,
-//           audioUrl: audioPath
-//         });
-
-//         // Save the video object to the database
-//         await video.save();
-
-//         // Split the audio into segments
-//         const segmentDuration = 300; // Duration of each segment in seconds
-//         const audioSegments = [];
-//         const totalDuration = await getAudioDuration(audioPath);
-
-//         for (let start = 0; start < totalDuration; start += segmentDuration) {
-//           const segmentStartTime = start;
-//           const segmentEndTime = Math.min(start + segmentDuration, totalDuration);
-
-//           const segmentFileName = `audio_segment_${segmentStartTime}_${segmentEndTime}.wav`;
-//           const segmentFilePath = path.join(__dirname, '../public/audio', segmentFileName);
-
-//           ffmpeg(audioPath)
-//             .setStartTime(segmentStartTime)
-//             .setDuration(segmentEndTime - segmentStartTime)
-//             .save(segmentFilePath);
-
-//           audioSegments.push(segmentFilePath);
-//         }
-
-//         const transcriptions = []; // Array to store individual transcriptions
-
-//         // Process each audio segment
-//         for (const segmentPath of audioSegments) {
-//           const pythonProcess = spawn('python', ['controllers/transcribe.py', segmentPath]);
-
-//           pythonProcess.stdout.on('data', (data) => {
-//             const transcribedText = data.toString().trim();
-//             console.log(`Transcription: ${transcribedText}`);
-//              transcriptions.push(transcribedText);
-//           });
-
-//           pythonProcess.stderr.on('data', (data) => {
-//             console.error(`Error in transcription: ${data}`);
-//           });
-
-//           pythonProcess.on('close', () => {
-//             // Combine transcriptions into a single text
-//             const concatenatedText = transcriptions.join(' ');
-
-//             // Save the text to a file
-//             const textFileName = 'text_' + videoFileName.split('.')[0] + '.txt';
-//             const textFilePath = path.join(__dirname, '../public/text', textFileName);
-//             fs.writeFile(textFilePath, concatenatedText, async (err) => {
-//               if (err) {
-//                 console.error(`Error saving transcription: ${err}`);
-//                 return res.status(500).json({
-//                   message: 'Error saving transcription',
-//                   error: err,
-//                 });
-                 
-//               } 
-              
-//   // Create a new instance of the TextSchema model
-//   const text = new TextSchema({
-//     title,
-//     description,
-//     filename: textFileName,
-//     textUrl: textFilePath,
-//   });
-
-//   try {
-//     // Save the text object to the database
-//     const savedText = await text.save();
-//     console.log('Text saved successfully:', savedText);
-
-//     // Send a success response
-//     return res.status(200).json({
-//       message: 'File text saved successfully',
-//       text: savedText,
-//     });
-//   } catch (error) {
-//     console.error('Error saving file text to the database:', error);
-//     return res.status(500).json({
-//       message: 'Error saving file text to the database',
-//       error: error,
-//     });
-//   }
-
-//               //else {
-//               //   console.log('Transcription saved successfully');
-//               //   return res.status(200).json({
-//               //     message: 'Video and Audio Uploaded Successfully',
-//               //     video,
-//               //     transcriptionUrl: `text/${textFileName}`,
-                 
-//               //      // Provide the URL to access the saved transcription
-//               //   });
-                 
-//               // }
-//             });
-//           });
-//         }
-//       })
-//       .save(audioPath);
-//   } catch (error) {
-//     console.log(`Error saving video and audio: ${error}`);
-//     res.status(400).json({
-//       message: 'Video and Audio upload failed',
-//       error
-//     });
-//   }
-// };
-
-// // Helper function to get the duration of an audio file using ffprobe
-// function getAudioDuration(audioPath) {
-//   return new Promise((resolve, reject) => {
-//     ffmpeg.ffprobe(audioPath, (err, metadata) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         const duration = metadata.format.duration;
-//         resolve(parseFloat(duration));
-//       }
-//     });
-//   });
-// }
-
-// const VideoSchema = require('../models/VideoModel');
-// const TextSchema = require('../models/fichierstext');
-// const ffmpeg = require('fluent-ffmpeg');
-// const fs = require('fs');
-// const path = require('path');
-// const { spawn } = require('child_process');
-
-// ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-
-// exports.addVideo = async (req, res) => {
-//   const { title, description, iduser } = req.body;
-//   const videoPath = req.file.path;
-//   const videoExt = req.file.mimetype.split('/')[1];
-//   const videoFileName = req.file.filename;
-//   const audioFileName = 'audio_' + videoFileName.split('.')[0] + '.wav';
-//   const audioPath = path.join(__dirname, '../public/audio', audioFileName);
-
-//   try {
-//     ffmpeg(videoPath)
-//       .toFormat('wav')
-//       .on('error', (err) => {
-//         console.log(`Error converting video to audio: ${err}`);
-//         res.status(500).json({
-//           message: 'Error converting video to audio',
-//           error: err
-//         });
-//       })
-//       .on('end', async () => {
-//         const video = new VideoSchema({
-//           title,
-//           description,
-//           iduser,
-//           filename: videoFileName,
-//           videoUrl: videoPath,
-//           audioUrl: audioPath
-//         });
-
-//         // Save the video object to the database
-//        const res= await video.save();
-       
-//        console.log(res)
-//        const videoUrl= res.videoUrl
-//         // Spawn a child process to run the Python script for audio transcription
-//           // Call the transcribe.py script with the audioPath as an argument
-//   const pythonProcess = spawn('python', ['controllers/transcribe.py', audioPath]);
-
-//   const transcriptions = []; // Array to store individual transcriptions
-
-//   pythonProcess.stdout.on('data', (data) => {
-//     const transcribedText = data.toString().trim();
-//     console.log(`Transcription: ${transcribedText}`);
-//     transcriptions.push(transcribedText);
-//   });
-
-//   pythonProcess.stderr.on('data', (data) => {
-//     console.error(`Error in transcription: ${data}`);
-//   });
-
-//   pythonProcess.on('close', () => {
-//     // Combine transcriptions into a single text
-//     const concatenatedText = transcriptions.join(' ');
-
-//     // Save the text to a file
-//     const textFileName = 'text_' + videoFileName.split('.')[0] + '.txt';
-//     const textFilePath = path.join(__dirname, '../public/text', textFileName);
-//     fs.writeFile(textFilePath, concatenatedText, async (err, fileText) => {
-//       if (err) {
-//         console.error(`Error saving transcription: ${err}`);
-//         res.status(500).json({
-//           message: 'Error saving transcription',
-//           error: err,
-//         });
-//       }  
-//       const text = new TextSchema({
-//         title,
-//         description,
-//         iduser,
-//         filename: textFileName,
-//         textUrl: textFilePath,
-//         fileText: fileText,
-//       });
-  
-      
-//         // Save the text object to the database
-//         const savedText = await text.save();
-//         console.log('Text saved successfully:', savedText);
-  
-//         // Send a success response
-
-//       // catch (error) {
-//       //   console.error('Error saving file text to the database:', error);
-//       //   return res.status(500).json({
-//       //     message: 'Error saving file text to the database',
-//       //     error: error,
-//       //   });
-    
-//     });
-//   });
-// })
-//       .save(audioPath);
-     
-//       // res.status(200).json({
-//       //   message: 'success',
-        
-//       // }); 
-//   } catch (error) {
-//     console.log(`Error saving video and audio: ${error}`);
-//     res.status(400).json({
-//       message: 'Video and Audio upload failed',
-//       error
-//     });
-//   }
-// };
 
 const VideoSchema = require('../models/VideoModel');
 const TextSchema = require('../models/fichierstext');
@@ -407,6 +136,28 @@ function getTimestampForPhrase(text, phrase) {
   return { start: startIndex, end: endIndex };
 }
 
+// exports.updateText = (req, res) => {
+//   const { id } = req.params;
+//   const { video } = req.body;
+
+//   VideoSchema.findByIdAndUpdate(id, { video })
+//     .then(() => res.send("Updated successfully"))
+//     .catch((err) => {
+//       console.log(err);
+//       res.send({ error: err, msg: "Something went wrong!" });
+//     });
+// };
+
+// exports.deleteVideo = (req, res) => {
+//   const { id } = req.params;
+
+//   VideoSchema.findByIdAndDelete(id)
+//     .then(() => res.send("Deleted successfully"))
+//     .catch((err) => {
+//       console.log(err);
+//       res.send({ error: err, msg: "Something went wrong!" });
+//     });
+//   };
 exports.getFichierText = async (req, res) => {
   try {
       const text = await TextSchema.find({})
@@ -486,7 +237,7 @@ exports.getVideoAndtext=async(req, res) =>{
   try{
     const video = await VideoSchema.findOne({iduser}).sort({ _id: -1 }).limit(1);
     const text = await TextSchema.findOne({iduser}).sort({ _id: -1 }).limit(1);
-    const textFilePath = `C:/Users/lenovo/Desktop/bureuu/SousTitre-Authentication-In-MERN/server/public/text/${text.filename}`; // Replace with the actual path to your text files
+    const textFilePath = `C:/Users/lenovo/Desktop/bureuu/SousTitre-Authentication-In-MERN/server/public/text/${text.filename}`;
      
 
     fs.readFile(textFilePath, 'utf8', (err, data) => {
@@ -505,11 +256,48 @@ exports.getVideoAndtext=async(req, res) =>{
   } catch (error) {
     res.status(400).json({
       message:'viddeo fetch failed',
-      erroe
+      error
     })
   }
 }
 
+exports.getVideo = async (req, res) => {
+  const { id} = req.params;
+  try {
+      const videos = await VideoSchema.find({id})
+      res.status(200).json({
+          videos
+      })
+  } catch (error) {
+      res.status(400).json({
+          message: 'Videos fetch failed',
+          error
+      })
+  }
+}
+
+exports.updateTextVideo = async (req, res) => {
+  const { id, text } = req.body; 
+  try {
+    // Find the video by id
+    const video = await VideoSchema.findById(id);
+
+    if (!video) {
+      return res.status(404).json({ error: 'Video not found' });
+    }
+
+    // Update the text field
+    video.text = text;
+
+    // Save the updated video
+    await video.save();
+
+    res.json({ message: 'Video updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
 
 exports.getAllVideos = async (req, res) => {
     try {
