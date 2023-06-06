@@ -4,7 +4,6 @@ import { useGlobalContext } from '../../context/global';
 import Button from '../Button/Button';
 import Navbar from "../../../Navbar/Navbar";
 import { useNavigate } from 'react-router-dom';
-import './Upload.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';

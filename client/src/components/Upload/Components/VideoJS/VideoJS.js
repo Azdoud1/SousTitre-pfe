@@ -21,7 +21,6 @@ export const VideoJS = (props) => {
                 videojs.log('player is ready');
                 onReady && onReady(player);
             });
-//https://meet.google.com/pjt-pnfn-ayu
             // You could update an existing player in the `else` block here
             // on prop change, for example:
         } else {

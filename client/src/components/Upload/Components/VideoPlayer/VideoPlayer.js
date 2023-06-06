@@ -1,28 +1,32 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom'
-import { useGlobalContext } from '../../context/global'
-import VideoJS from '../VideoJS/VideoJS'
+import { Link, useParams } from 'react-router-dom';
+import { useGlobalContext } from '../../context/global';
+import VideoJS from '../VideoJS/VideoJS';
 import videojs from 'video.js';
 import Navbar from "../../../Navbar/Navbar";
-import './VideoPlayer.css'
+import './VideoPlayer.css';
 
 import 'videojs-contrib-quality-levels';
 
-// const [textData, setTextData] = useState(null);
-
-
 function VideoPlayer() {
+    const { id } = useParams();
+    const { videos } = useGlobalContext();
+    const video = videos.find((vid) => {
+        return vid._id === id;
+    });
+    const textareaRef = useRef(null);
+    const [text, setText] = useState({ text: '' });
 
-    const {id} = useParams()
-    const {videos} = useGlobalContext()
-    const video = videos.find((vid)=> {
-        return vid._id === id
-    })
+    useEffect(() => {
+        if (video) {
+            setText({ text: video.text });
+        }
+    }, [video]);
+
     //refs
     const videoConRef = useRef(null);
     const playerRef = React.useRef(null);
-
 
     const handlePlayerReady = (player) => {
         playerRef.current = player;
@@ -44,10 +48,12 @@ function VideoPlayer() {
         responsive: true,
         fluid: true,
         alwaysShowControls: true,
-        sources: [{
-            src: video?.videoUrl,
-            type: 'video/mp4'
-        }],
+        sources: [
+            {
+                src: video?.videoUrl,
+                type: 'video/mp4',
+            },
+        ],
         controlBar: {
             children: [
                 'playToggle',
@@ -63,46 +69,64 @@ function VideoPlayer() {
             durationDisplay: {
                 timeToShow: ['duration'],
                 countDown: false,
-            }
+            },
+        },
+    };
+
+    const modificationHandler = () => {
+        const textareaElement = textareaRef.current;
+        if (textareaElement) {
+            const textareaValue = textareaElement.value;
+            console.log(textareaValue);
+            axios
+                .post('http://localhost:3000/api/videotextupdate', { id, text: textareaValue })
+                .then((response) => {
+                    // Handle the response from the server
+                    console.log(response.data); // Response from the server
+                    // Perform additional actions as needed
+                })
+                .catch((error) => {
+                    // Handle errors
+                    console.error(error);
+                    // Perform error handling as needed
+                });
         }
-    }
-    
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(`http://localhost:3000/api/text/`+localStorage.getItem('user'));
-            
-          console.log(response.data) 
-          setTextData(response.data);
-          } catch (error) {
-            console.log('Error fetching data:', error);
-          }
-        };
-        fetchData();
-    }, []);
-    
+    };
 
     return (
+        <>
+            <Navbar />
+            <div className="container">
+                                <div className="row">
+                                    <div className="col-6">
+                                <div className="embed-responsive embed-responsive-16by9 mb-4" ref={videoConRef}>
+                                    <VideoJS options={videoOptions} onReady={handlePlayerReady} />
+                                </div>
+                                    </div>
+                                    <div className="col-6">
+                                <div className="form-group">
+                                    <textarea
+                                        className="form-control"
+                                        ref={textareaRef}
+                                        id="transcription"
+                                        rows="15"
+                                        value={text.text}
+                                        onChange={(e) => {
+                                            setText(e.target.value);
+                                        }}
+                                    ></textarea>
+                                </div>
+                                    </div>
+                                </div>
+                                <div className="text-center mt-2 ms-5">
+                                    <button className="btn btn-primary" onClick={modificationHandler}>
+                                        Update
+                                    </button>
+                                </div>
 
-        
-<div>
-            <div className="VideoPlayer" >
-            <Navbar/>
-            <div className="back">
-                <Link to={'/user/videos/'}><i className="fas fa-arrow-left"></i>Back to Videos</Link>
             </div>
-            <div className="video-container" ref={videoConRef}>
-                <VideoJS options={videoOptions} onReady={handlePlayerReady} />
-            </div>
-            <div className="video-info">
-                <h4>{video?.text}</h4>
-
-            </div>
-            </div>
-</div>
-        
-    )
+        </>
+    );
 }
 
-
-export default VideoPlayer
+export default VideoPlayer;

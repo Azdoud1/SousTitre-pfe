@@ -1,28 +1,35 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../../context/global';
-import Navbar from "../../../Navbar/Navbar";
-import "./Videos.css"
-import 'bootstrap/dist/css/bootstrap.min.css'
+import Navbar from '../../../Navbar/Navbar';
+import './Videos.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Videos() {
-    const {videos} = useGlobalContext()
+    const { videos } = useGlobalContext();
 
     return (
-        <div className="videos">
-            <Navbar/>
-            <div className="videos-container">
-                {videos.map((video) => {
-                    return <Link key={video._id} to={`/videos/${video._id}`}>
-                        <div  className="video">
-                            <video src={video.videoUrl}></video>
-                            <h4>{video.title}</h4>
-                            <p>{video.description}</p>
+        <div>
+            <Navbar />
+            <div className="container">
+                <div className="row">
+                    {videos.map((video) => (
+                        <div key={video._id} className="col-md-4 mb-4">
+                            <Link to={`/videos/${video._id}`} className="text-decoration-none">
+                                <div className="card">
+                                    <video src={video.videoUrl} className="card-img-top" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{video.title}</h5>
+                                        <p className="card-text">{video.description}</p>
+                                    </div>
+                                </div>
+                            </Link>
                         </div>
-                    </Link>
-                })}
+                    ))}
+                </div>
             </div>
         </div>
-    )
+    );
 }
-export default Videos
+
+export default Videos;

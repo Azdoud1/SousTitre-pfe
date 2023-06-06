@@ -1,14 +1,23 @@
 .navbar {
 	padding: 1rem 0;
-	background-color: #307783;
+	background-color: #3bb19b;
 	color: #f5e9e9;
 	font-size: 1.2rem;
-	box-shadow: 0 4px 6px rgb(52, 123, 134);
+
+}
+.icon {
+	font-size: 1.8rem;
+	color: #41f518;
+}
+.icon1 {
+	font-size: 2.5rem;
+	color: #57fa32;
+
 }
 
 .navbar-brand {
-	font-size: 1.8rem;
-	font-weight: bold;
+
+	font-weight: bolder;
 	color: #e8e2e2;
 }
 
@@ -23,13 +32,13 @@
 
 .navbar-nav {
 	display: flex;
-	align-items: center;
+	align-items: end;
 }
 
 .nav-link {
 	color: #fff;
 	margin-right: 1rem;
-	font-weight: bold;
+	font-weight: bolder;
 }
 
 .nav-link:hover {
@@ -39,7 +48,7 @@
 
 .nav-link.active {
 	color: #fff;
-	text-decoration: underline;
+	text-decoration:  white;
 }
 
 @media (max-width: 991px) {
@@ -52,10 +61,10 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: #a7e2ee;
-		padding-top: 4rem;
+		background-color: #3bb19b;
+		padding-top: 3rem;
 		z-index: 9999;
-		overflow-y: auto;
+		overflow-y: scroll;
 		transform: translateY(-100%);
 		transition: transform 0.3s ease;
 	}
@@ -66,11 +75,11 @@
 		display: block;
 		padding: 1rem;
 		margin-right: 0;
-		font-weight: normal;
+		font-weight: bold;
 		border-top: 1px solid rgb(140, 226, 243);
 		color: white;
 	}
 	.nav-link.active {
-		text-decoration: none;
+		text-decoration: #f1f1f1;
 	}
 }

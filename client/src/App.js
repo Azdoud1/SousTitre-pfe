@@ -10,6 +10,7 @@ import Signup from "./components/Signup/signUp";
 import Login from "./components/Login/signIn";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+import Updatprofil from "./components/UpdateUser/update";
 
 
 
@@ -31,6 +32,8 @@ const App = () =>  {
                     {user && <Route path='/user/videos/' element={<Videos />} />  }
 
                     {user && <Route path='/videos/:id' element={<VideoPlayer />} />}
+
+                    {<Route path='/user/update/' element={<Updatprofil />} />}
 
                     {user && <Route path='/video/' element={<VideoDisplay />} />}
                     

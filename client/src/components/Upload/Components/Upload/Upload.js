@@ -3,11 +3,9 @@ import React from 'react'
 import { useGlobalContext } from '../../context/global';
 import Button from '../Button/Button';
 import Navbar from "../../../Navbar/Navbar";
-import { useNavigate } from 'react-router-dom';
 import './Upload.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios';
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 function Upload() {
     const [video, setVideo] = React.useState(null);
@@ -15,12 +13,11 @@ function Upload() {
     const [description, setDescription] = React.useState('');
     const [label, setLabel] = React.useState('Upload your video...');
     const [loading, setLoading] = React.useState(false);
-    const [isUpload, setIsUpload] = React.useState(false);
-    const [conversionComplete, setConversionComplete] = React.useState(false);
+
     const [uploadProgress, setUploadProgress] = React.useState(0);
 
     const {getAllVideos} = useGlobalContext();
-    const history = useNavigate();
+
 
     const handleTextChange = name => e => {
         if(name === 'title'){
@@ -74,43 +71,44 @@ function Upload() {
         setLabel('Upload your video...');
         setUploadProgress(0);
       };
-      
+
 
     return (
         <div>
-            <Navbar/>
-            <h2>Upload Video</h2>
-            {/* { !loading? */}
-            <form onSubmit={handleUpload} action="api/upload" method='POST' encType='multipart/form-data'>
+            <Navbar />
+            <form onSubmit={handleUpload} action="api/upload" method="POST" encType="multipart/form-data">
                 <div className="input-control">
                     <label htmlFor="title">Title</label>
                     <input
                         type="text"
                         name="title"
                         id="title"
-                        placeholder='Enter Title'
+                        placeholder="Enter Title"
                         value={title}
                         onChange={handleTextChange('title')}
                     />
                 </div>
                 <div className="input-control">
                     <label htmlFor="description">Description</label>
-                    <textarea
-                        name="description"
-                        placeholder='Enter description here...'
-                        id="description" cols="30" rows="6"
-                        value={description}
-                        onChange={handleTextChange('description')}
-                    >
-                    </textarea>
+                    <div className="description-input">
+                        <textarea
+                            name="description"
+                            placeholder="Enter description here..."
+                            id="description"
+                            cols="30"
+                            rows="6"
+                            value={description}
+                            onChange={handleTextChange('description')}
+                        ></textarea>
+                    </div>
                 </div>
                 <div className="input-control upload-con">
                     <label htmlFor="video">Video Upload</label>
                     <div className="inner-input">
                         <label
-                            className='inner-label'
+                            className="inner-label"
                             htmlFor="video"
-                            style={{color: video ? '#00b894' : 'rgb(74 74 74)'}}
+                            style={{ color: video ? '#1a81e8' : 'rgb(18,18,220)' }}
                         >
                             {label}
                         </label>
@@ -119,7 +117,6 @@ function Upload() {
                             name="video"
                             id="video"
                             accept="video/*"
-                            //hidden
                             hidden
                             onChange={handleVideo}
                         />
@@ -128,27 +125,20 @@ function Upload() {
                         <Button
                             name="Upload"
                             icon={<i className="fas fa-upload"></i>}
-                            bg={"#00b894"}
+                            bg="#00b894"
                             type="submit"
                             disabled={loading}
                         />
                     </div>
                     {uploadProgress && (
-                    <div className="progress-bar">
-                       <div className="progress" style={{ width: `${uploadProgress}%` }}></div>
-                    </div>)}
-                    
-
+                        <div className="progress-bar">
+                            <div className="progress" style={{ width: `${uploadProgress}%` }}></div>
+                        </div>
+                    )}
                 </div>
             </form>
-            {/* <div className='bg-white'> */}
-              {/* <VideoPlayer/> */}
-
-
-            {/* </div> */}
-
         </div>
-    )
+    );
 }
 
 export default Upload

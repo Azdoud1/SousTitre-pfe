@@ -1,26 +1,26 @@
-h2 {
-    color: #2828d2;
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    margin-top: 80px;
+
+
+.description-input {
+    display: flex;
 }
-body{
-    background-color: #6e6e7c;
-   background-image: url("../../../../image/imag.jpg") ;
-    background-size: cover;
+
+.description-input textarea {
+    flex: 1;
+    margin-left: 10px;
 }
+
 
 form {
     display: flex;
     flex-direction: column;
     max-width: 600px;
-    margin: 0 auto;
+
+
 }
 
 .input-control {
     margin: 1rem 0;
+    align-items: normal;
 }
 
 label {
@@ -106,7 +106,6 @@ textarea {
     color: rgb(74 74 74);
 }
 
-
 #video {
     display: none;
 }
@@ -123,13 +122,13 @@ textarea {
     background-color: #f1f1f1;
     border-radius: 5px;
     overflow: hidden;
-  }
-  
-  .progress {
+}
+
+.progress {
     height: 100%;
     background-color: #00b894;
     transition: width 0.3s ease-in-out;
-  }  
+}
 
 @media only screen and (max-width: 600px) {
     .input-control.upload-con {
@@ -141,8 +140,6 @@ textarea {
         flex-direction: column;
         align-items: flex-end;
         display: flex;
-
-
     }
 
     .back i {

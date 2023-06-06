@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import "./VideoDisplay.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 function VideoDisplay() {
+  const id=localStorage.getItem('user')
+
   const [videoData, setVideoData] = useState(null);
   const [textData, setTextData] = useState(null);
   const [initextData, setiniTextData] = useState("");
@@ -17,13 +19,15 @@ function VideoDisplay() {
           setTranscription(e.target.value)
 }
 }
-  
+const textareaRef = useRef(null);
+const [text, setText] = useState({ text: '' }); 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/videoandtext/`+localStorage.getItem('user'));
+        const response = await axios.get(`http://localhost:3000/api/videoandtext/${id}`);
         
-      console.log(response.data) 
+      console.log(response.data.text) 
       setVideoData(response.data);
       } catch (error) {
         console.log('Error fetching data:', error);
@@ -31,34 +35,32 @@ function VideoDisplay() {
     };
     fetchData();
     
-    const fetchtextData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/api/lastfichiertext/`+localStorage.getItem('user'));
-        const textData = { Data: response.data };
-        setiniTextData(textData);
-       
-        const formData = new FormData();
-        formData.append('transcription', e.target.transcription.value);
-      console.log(response.data) 
-      setTextData(response.data);
-      setTranscription(response.data);
 
-      } catch (error) {
-        console.log('Error fetching data:', error);
-      }
-    };
-    fetchtextData();
 
    
   }, []); // Empty dependency array to run the effect only once
   
   const modificationHandler = () => {
-    setModification((modification) => !modification)
-    console.log("modification")
-    console.log(modification)
+    const textareaElement = textareaRef.current; 
+    if (textareaElement) {
+      const textareaValue = textareaElement.value; 
+      console.log(textareaValue); 
+  axios
+  .post('http://localhost:3000/api/videotextupdate', { id , text: textareaValue })
+  .then((response) => {
+    // Handle the response from the server
+    console.log(response.data); // Response from the server
+    // Perform additional actions as needed
+  })
+  .catch((error) => {
+    // Handle errors
+    console.error(error);
+    // Perform error handling as needed
+  });
+}
     
   }
-
+  
   return (
     <div className="mycontainer">
      {videoData &&(
@@ -68,21 +70,15 @@ function VideoDisplay() {
           <div className="video">
              <video  className="VideoPlayer" src={`http://localhost:3000/api/readVideo/`+videoData.video.filename} controls />
           </div>
-          <form>
-          {!modification && <textarea
+          <form >  
+           <textarea
+                        ref={textareaRef}
                         type="text"
                         id="transcription" cols="30" rows="22"
-                        value={videoData.data}
-                        onChange={()=>{}}
-                    >
-                    </textarea>}
-                    
-          {modification && <textarea
-                        id="transcription" cols="30" rows="22"
-                        value={videoData.data}
+                        value={videoData.video.text}
                         onChange={handleTextChange('transcription')}
                     >
-                    </textarea>}
+                    </textarea>
                     
                     <div><button onClick={modificationHandler}>
                       {!modification ? "modify" : "send"}
