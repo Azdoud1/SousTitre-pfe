@@ -1,4 +1,3 @@
-
 const VideoSchema = require('../models/VideoModel');
 const TextSchema = require('../models/fichierstext');
 const ffmpeg = require('fluent-ffmpeg');
@@ -6,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 
-ffmpeg.setFfmpegPath("C://Users/Hp/OneDrive/Desktop/ffmpeg-master-latest-win64-gpl/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
+ffmpeg.setFfmpegPath("C:/Users/Hp/OneDrive/Desktop/ffmpeg-master-latest-win64-gpl/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
 
 exports.addVideo = async (req, res) => {
   const { title, description, iduser } = req.body;
@@ -19,20 +18,27 @@ exports.addVideo = async (req, res) => {
   try {
     ffmpeg(videoPath)
       .toFormat('wav')
-      .on('error', (err) => {
+      .on('error',function(err, stdout, stderr) {
         console.log(`Error converting video to audio: ${err}`);
-        res.status(500).json({
-          message: 'Error converting video to audio',
-          error: err
-        });
+        if (err) {
+          console.log(err.message);
+          console.log("stdout:\n" + stdout);
+          console.log("stderr:\n" + stderr);
+         // reject("Error");
+      }
+        // res.status(500).json({
+        //   message: 'Error converting video to audio',
+        //   error: err
+        // });
       })
       .on('end', async () => {
         // Save the video object to the database
         // const savedVideo = await video.save();
         // console.log(savedVideo);
-
+        console.log(audioPath)
         // Spawn a child process to run the Python script for audio transcription
         const pythonProcess = spawn('python', ['controllers/transcribe.py', audioPath]);
+        
 
         const transcriptions = []; // Array to store individual transcriptions
 
@@ -177,7 +183,7 @@ exports.UpdateFichierText = async (req, res) => {
 
   try {
     const text = await TextSchema.findOne({iduser}).sort({ _id: -1 }).limit(1);
-    const textFilePath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-Authentication-In-MERN/server/public/text/${text.filename}`; // Replace with the actual path to your text files
+    const textFilePath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-pfe/server/public/text/${text.filename}`; // Replace with the actual path to your text files
      
 
     fs.readFile(textFilePath, 'utf8', (err, data) => {
@@ -213,14 +219,14 @@ exports.getVideo = async (req, res) => {
 
 exports.readVideo=async(req, res) =>{
     const { filename } = req.params;
-    const videoPath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-Authentication-In-MERN/server/public/videos/${filename}`; // Replace with the actual path to your video files
+    const videoPath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-pfe/server/public/videos/${filename}`; // Replace with the actual path to your video files
 
     res.sendFile(videoPath);
  
 }
 exports.readText =async(req, res) =>{
   const { filename } = req.params;
-  const textFilePath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-Authentication-In-MERN/server/public/text/${filename}`; // Replace with the actual path to your text files
+  const textFilePath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-pfe/server/public/text/${filename}`; // Replace with the actual path to your text files
   fs.readFile(textFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading text file:', err);
@@ -237,7 +243,7 @@ exports.getVideoAndtext=async(req, res) =>{
   try{
     const video = await VideoSchema.findOne({iduser}).sort({ _id: -1 }).limit(1);
     const text = await TextSchema.findOne({iduser}).sort({ _id: -1 }).limit(1);
-    const textFilePath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-Authentication-In-MERN/server/public/text/${text.filename}`;
+    const textFilePath = `C:/Users/Hp/OneDrive/Desktop/SousTitre-pfe/server/public/text/${text.filename}`;
      
 
     fs.readFile(textFilePath, 'utf8', (err, data) => {
@@ -276,6 +282,17 @@ exports.getVideo = async (req, res) => {
   }
 }
 
+exports.deleteVideo = (req, res) => {
+  const { id } = req.params;
+
+  VideoSchema.findByIdAndDelete(id)
+    .then(() => res.send("Deleted successfully"))
+    .catch((err) => {
+      console.log(err);
+      res.send({ error: err, msg: "Something went wrong!" });
+    });
+};
+
 exports.updateTextVideo = async (req, res) => {
   const { id, text } = req.body; 
   try {
@@ -312,113 +329,13 @@ exports.getAllVideos = async (req, res) => {
         })
     }
 }
+exports.deleteVideo = (req, res) => {
+  const { id } = req.params;
 
-/*const VideoSchema = require('../models/VideoModel');
-const ffmpeg = require('fluent-ffmpeg');
-const deepspeech = require('deepspeech');
-const fs = require('fs');
-
-const path = require('path');
-ffmpeg.setFfmpegPath("C:/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe");
-
-exports.addVideo = async (req, res) => {
-    const { title, description } = req.body;
-    const videoPath = req.file.path;
-    const videoExt = req.file.mimetype.split('/')[1];
-    const videoFileName = req.file.filename;
-
-    const audioFileName = 'audio_' + videoFileName.split('.')[0] + '.wav';
-    const audioPath = path.join(__dirname, 'public/audio', audioFileName);
-    const audioTextFileName = 'text_' + videoFileName.split('.')[0] + '.txt';
-    const audioTextPath = path.join(__dirname, 'public/text', audioTextFileName);
-  
-    try {
-        ffmpeg(videoPath)
-            .toFormat('wav')
-            .on('error', (err) => {
-                console.log(`Error converting video to audio: ${err}`);
-                res.status(500).json({
-                    message: 'Error converting video to audio',
-                    error: err
-                });
-            })
-            .on('end', async () => {
-              const audioBuffer = fs.readFileSync(audioPath);
-              const audioLength = (audioBuffer.length / 2) * (1 / 16000);
-              const audioData = new Int16Array(audioBuffer.buffer);
-      
-              const text = model.stt(audioData, 16000);
-              fs.writeFileSync(audioTextPath, text);
-
-                const video = new VideoSchema({
-                    title,
-                    description,
-                    filename: videoFileName,
-                    videoUrl: videoPath,
-                    audioUrl: audioPath
-                });
-
-                await video.save();
-                res.status(200).json({
-                    message: 'Video and Audio Uploaded Succesfully',
-                    video
-                });
-            })
-            .save(audioPath);
-    } catch (error) {
-        console.log(`Error saving video and audio: ${error}`);
-        res.status(400).json({
-            message: 'Video and Audio upload failed',
-            error
-        });
-    }
-   
-    // convert audio to text
-const { spawn } = require('child_process');
-const fs = require('fs');
-
-async function transcribeAudio(audioPath) {
-  const pythonScript = path.join(__dirname, 'transcribe.py');
-  const pythonArgs = [audioPath,audioFileName];
-  const pythonProcess = spawn('python', [pythonScript, ...pythonArgs]);
-
-  return new Promise((resolve, reject) => {
-    let transcription = '';
-
-    pythonProcess.stdout.on('data', (data) => {
-      transcription += data;
+  VideoSchema.findByIdAndDelete(id)
+    .then(() => res.send("Deleted successfully"))
+    .catch((err) => {
+      console.log(err);
+      res.send({ error: err, msg: "Something went wrong!" });
     });
-
-    pythonProcess.stderr.on('data', (data) => {
-      console.error(`Error: ${data}`);
-      reject(data);
-    });
-
-    pythonProcess.on('close', (code) => {
-      if (code !== 0) {
-        console.error(`Python script exited with code ${code}`);
-        reject(`Python script exited with code ${code}`);
-      } else {
-        const textPath = path.join(__dirname, '../public/text', `${path.parse(audioPath).name}.txt`);
-        fs.writeFile(textPath, transcription.trim(), (err) => {
-          if (err) {
-            console.error(`Error writing transcription to file: ${err}`);
-            reject(err);
-          } else {
-            resolve(textPath);
-          }
-        });
-      }
-    });
-  });
-}
-
-transcribeAudio(audioPath)
-  .then((textPath) => {
-    console.log(`Transcription saved to ${textPath}`);
-  })
-  .catch((error) => {
-    console.error(`Error transcribing audio: ${error}`);
-  });
-  };
-*/
+};

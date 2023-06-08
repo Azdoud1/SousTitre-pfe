@@ -4,6 +4,8 @@ import nltk
 
 r = sr.Recognizer()
 
+nltk.download('punkt')
+
 def transcribe_audio(path):
     # use the audio file as the audio source
     with sr.AudioFile(path) as source:
@@ -43,12 +45,11 @@ def transcribe_audio(path):
     # return the transcribed text with word durations and metadata
     return transcribed_text_with_metadata
 
-if _name_ == '_main_':
+if __name__=='__main__':
     audio_path = sys.argv[1]
     transcribed_text_with_metadata = transcribe_audio(audio_path)
 
     # print the transcribed text with word durations and metadata
-    print("Transcription with Word Durations and Metadata:")
     minutes = 0
     remaining_seconds = 0
     minutesend = 0
@@ -58,7 +59,6 @@ if _name_ == '_main_':
         remaining_seconds=int(metadata['start_time'] % 60)
         minutesend=int(metadata['end_time'] // 60)
         remaining_secondsend=int(metadata['end_time'] % 60)
-        print(f"{minutes},{remaining_seconds}-")
+        print(f"{minutes}:{remaining_seconds}=>{minutesend}:{remaining_secondsend}") 
         print(f"{segment}")
-        print(f"-{minutesend},{remaining_secondsend}")
-        print()
+        

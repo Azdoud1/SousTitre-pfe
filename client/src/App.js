@@ -33,7 +33,7 @@ const App = () =>  {
 
                     {user && <Route path='/videos/:id' element={<VideoPlayer />} />}
 
-                    {<Route path='/user/update/' element={<Updatprofil />} />}
+                    {user && <Route path='/user/update/' element={<Updatprofil />} />}
 
                     {user && <Route path='/video/' element={<VideoDisplay />} />}
                     

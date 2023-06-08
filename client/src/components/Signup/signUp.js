@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./signUp.css";
+import "./signUp.css";
 
 const Signup = () => {
 	const [data, setData] = useState({
@@ -36,18 +36,18 @@ const Signup = () => {
 	};
 
 	return (
-		<div className={styles.signup_container}>
-			<div className={styles.signup_form_container}>
-				<div className={styles.left}>
+		<div className="signup_container">
+			<div className="signup_form_container">
+				<div className="left">
 					<h1>Welcome Back</h1>
 					<Link to="/login">
-						<button type="button" className={styles.white_btn}>
+						<button type="button" className="white_btn">
 							Sing in
 						</button>
 					</Link>
 				</div>
-				<div className={styles.right}>
-					<form className={styles.form_container} onSubmit={handleSubmit}>
+				<div className="right">
+					<form className="form_container" onSubmit={handleSubmit}>
 						<h1>Create Account</h1>
 						<input
 							type="text"
@@ -56,7 +56,7 @@ const Signup = () => {
 							onChange={handleChange}
 							value={data.firstName}
 							required
-							className={styles.input}
+							className="input"
 						/>
 						<input
 							type="text"
@@ -65,7 +65,7 @@ const Signup = () => {
 							onChange={handleChange}
 							value={data.lastName}
 							required
-							className={styles.input}
+							className="input"
 						/>
 						<input
 							type="email"
@@ -74,7 +74,7 @@ const Signup = () => {
 							onChange={handleChange}
 							value={data.email}
 							required
-							className={styles.input}
+							className="input"
 						/>
 						<input
 							type="password"
@@ -83,10 +83,10 @@ const Signup = () => {
 							onChange={handleChange}
 							value={data.password}
 							required
-							className={styles.input}
+							className="input"
 						/>
-						{error && <div className={styles.error_msg}>{error}</div>}
-						<button type="submit" className={styles.green_btn}>
+						{error && <div className="error_msg">{error}</div>}
+						<button type="submit" className="green_btn">
 							Sing Up
 						</button>
 					</form>

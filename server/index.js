@@ -5,7 +5,10 @@ const cors = require("cors");
 const connection = require("./db");
 const userRoutes = require("./routes/signUp");
 const authRoutes = require("./routes/signIn");
+const authUser = require("./update/updateUser");
 const session = require('express-session');
+
+
 
 const {readdirSync} = require("fs");
 const path = require("path");
@@ -14,6 +17,23 @@ const path = require("path");
 // database connection
 connection();
 
+
+app.use(
+    cors({
+        origin: "http://localhost:3001",
+        optionsSuccessStatus: 200, // optionnel
+    })
+);
+
+
+
+
+
+
+// PUT route to update the user's profile
+app.use("/users", authUser);
+
+
 // middlewares
 app.use(express.json());
 app.use(cors());
@@ -21,6 +41,7 @@ app.use(cors());
 // routes
 app.use("/api/signUp", userRoutes);
 app.use("/api/signIn", authRoutes);
+
 
 
 //serve static files
@@ -51,6 +72,8 @@ app.post('/api/signOut', (req, res) => {
         }
     });
 });
+
+
 
 
 const port = process.env.PORT || 3000;

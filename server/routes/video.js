@@ -1,4 +1,4 @@
-const { addVideo, getAllVideos, getFichierText, getVideo, getVideoAndtext, readVideo, readText, UpdateFichierText, updateTextVideo } = require('../controllers/video')
+const { addVideo,deleteVideo, getAllVideos, getFichierText, getVideo, getVideoAndtext, readVideo, readText, UpdateFichierText, updateTextVideo } = require('../controllers/video')
 const { videoUpload } = require('../middlewares/videoUpload')
 
 const router = require('express').Router()
@@ -15,5 +15,6 @@ router.post('/upload', videoUpload.single('video'), addVideo)
     
     router.post("/videotextupdate", updateTextVideo);
     // router.delete("/delete/:id", deleteVideo);
+    router.delete("/delete/:id", deleteVideo);
 
 module.exports = router

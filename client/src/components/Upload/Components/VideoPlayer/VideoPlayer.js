@@ -6,6 +6,7 @@ import VideoJS from '../VideoJS/VideoJS';
 import videojs from 'video.js';
 import Navbar from "../../../Navbar/Navbar";
 import './VideoPlayer.css';
+import { BsTrash } from "react-icons/bs";
 
 import 'videojs-contrib-quality-levels';
 
@@ -17,12 +18,13 @@ function VideoPlayer() {
     });
     const textareaRef = useRef(null);
     const [text, setText] = useState({ text: '' });
+    const [updateUI, setUpdateUI] = useState(false); 
 
     useEffect(() => {
         if (video) {
-            setText({ text: video.text });
+          setText({ text: video.text });
         }
-    }, [video]);
+      }, [video,updateUI]);
 
     //refs
     const videoConRef = useRef(null);
@@ -72,6 +74,20 @@ function VideoPlayer() {
             },
         },
     };
+    const RemoveVideo = () => {
+        const confirmed = window.confirm('Are you sure you want to delete the video?');
+        if (confirmed) {
+          axios
+            .delete(`http://localhost:3000/api/delete/${id}`)
+            .then((res) => {
+              console.log(res);
+              setUpdateUI((prevState) => !prevState);
+            })
+            .catch((error) => {
+              console.error("Error deleting video:", error);
+            });
+        }
+      };
 
     const modificationHandler = () => {
         const textareaElement = textareaRef.current;
@@ -94,16 +110,16 @@ function VideoPlayer() {
     };
 
     return (
-        <>
+        <div >
             <Navbar />
-            <div className="container">
+            <div className="container mt-3 play">
                                 <div className="row">
-                                    <div className="col-6">
+                                    <div className="col-8">
                                 <div className="embed-responsive embed-responsive-16by9 mb-4" ref={videoConRef}>
                                     <VideoJS options={videoOptions} onReady={handlePlayerReady} />
                                 </div>
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col-4">
                                 <div className="form-group">
                                     <textarea
                                         className="form-control"
@@ -118,14 +134,19 @@ function VideoPlayer() {
                                 </div>
                                     </div>
                                 </div>
-                                <div className="text-center mt-2 ms-5">
+                                <div className="text-center button ">
                                     <button className="btn btn-primary" onClick={modificationHandler}>
                                         Update
                                     </button>
+                                    <BsTrash className="icon" onClick={RemoveVideo} />
                                 </div>
-
+                                <div class="col-6" className="bottons">
+                <div className="back">
+                  <Link to={'/user/videos/'}><i className="fas fa-arrow-left"></i>Back to Videos</Link>
+                </div>
+                </div>
             </div>
-        </>
+        </div>
     );
 }
 

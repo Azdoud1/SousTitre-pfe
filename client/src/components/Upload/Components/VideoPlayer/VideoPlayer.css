@@ -1,30 +1,20 @@
 .mycontainer {
     position: relative;
-    height: 100vh;
-    width: 100%;
+    height: 100%;
+    
+   
 }
 .VideoPlayer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 0px;
-
+   
+}
+.play {
+    margin-top: 30px;
 }
 
 
-.back {
-    margin: 1rem;
-}
 
-.back a {
-    text-decoration: none;
-    color: #f8f3f3;
-    font-size: 20px;
-}
-
-.back i {
-    margin-right: 0.5rem;
-}
 
 .video-container {
     margin-top: 2rem;
@@ -41,7 +31,7 @@
 
 .video-info h4 {
     color: #c76b02;
-    font-size: 3rem;
+    font-size: 4rem;
     margin-bottom: 0.5rem;
 }
 .redirect-btn {
@@ -71,5 +61,20 @@
     font-size: 1.1rem;
     color: #333;
 }
+.back {
+    margin: 1rem;
+}
 
+.back a {
+    text-decoration: none;
+    color: #1e1ed4;
+    font-size: 20px;
+}
 
+.back i {
+    margin-right: 0.5rem;
+}
+
+.button {
+    margin-left: 470px;
+}
