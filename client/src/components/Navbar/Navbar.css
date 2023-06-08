@@ -1,10 +1,17 @@
 .navbar {
 	padding: 1rem 0;
 	background-color: #3bb19b;
-	color: #f5e9e9;
 	font-size: 1.2rem;
 
 }
+  .customIcon {
+	transition: transform 0.3s ease-in-out;
+  }
+  
+  .customIcon:hover {
+	transform: scale(1.2); /* Applique une échelle de 1.2 (zoom) au survol */
+  }
+
 .icon {
 	font-size: 1.8rem;
 	color: #000000;
@@ -16,18 +23,13 @@
 }
 
 .navbar-brand {
-
 	font-weight: bolder;
-	color: #e8e2e2;
+
 }
 
 .navbar-toggler {
 	border: none;
 	outline: none;
-}
-
-.navbar-toggler-icon {
-	color: #fff;
 }
 
 .navbar-nav {
@@ -36,18 +38,17 @@
 }
 
 .nav-link {
-	color: #fff;
+
 	margin-right: 1rem;
 	font-weight: bolder;
 }
 
 .nav-link:hover {
-	color: #fff;
+
 	text-decoration: none;
 }
 
 .nav-link.active {
-	color: #fff;
 	text-decoration:  white;
 }
 
@@ -77,7 +78,7 @@
 		margin-right: 0;
 		font-weight: bold;
 		border-top: 1px solid rgb(140, 226, 243);
-		color: white;
+
 	}
 	.nav-link.active {
 		text-decoration: #f1f1f1;

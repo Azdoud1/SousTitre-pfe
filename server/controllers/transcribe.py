@@ -11,7 +11,9 @@ def transcribe_audio(path):
     with sr.AudioFile(path) as source:
         audio_listened = r.record(source)
         # try converting it to text
-        text = r.recognize_google(audio_listened, language='fr-FR')
+        audio_language = sys.argv[2]
+
+        text = r.recognize_google(audio_listened, language=audio_language)
 
     # split the text into words
     words = nltk.word_tokenize(text)

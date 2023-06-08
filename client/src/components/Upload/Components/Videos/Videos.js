@@ -21,7 +21,7 @@ function Videos() {
     return (
         <div>
             <Navbar />
-            <div className="container">
+            <div className="container ">
                 <div className="row">
                     <div className="col-md-12 mb-4">
                         <div className="input-search">

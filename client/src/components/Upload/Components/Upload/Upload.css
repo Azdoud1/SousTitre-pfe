@@ -43,6 +43,7 @@ textarea {
 
 textarea {
     resize: none;
+    align-items: normal;
 }
 
 .inner-input {

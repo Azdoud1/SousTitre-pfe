@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./signUp.css";
+import customIcon from '../../image/Untitled_design.png';
+
 
 const Signup = () => {
 	const [data, setData] = useState({
@@ -20,7 +22,7 @@ const Signup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:3000/api/signUp";
+			const url = "http://localhost:3000/api/signUp/";
 			const { data: res } = await axios.post(url, data);
 			navigate("/login");
 			console.log(res.message);
@@ -39,6 +41,7 @@ const Signup = () => {
 		<div className="signup_container">
 			<div className="signup_form_container">
 				<div className="left">
+					<img src={customIcon} style={{ width: '50px', height: '40px', transform:'scale(6,8)',textAlign: 'center' , marginBottom: '100px' }} />
 					<h1>Welcome Back</h1>
 					<Link to="/login">
 						<button type="button" className="white_btn">
@@ -49,6 +52,7 @@ const Signup = () => {
 				<div className="right">
 					<form className="form_container" onSubmit={handleSubmit}>
 						<h1>Create Account</h1>
+						<label > First Name:</label>
 						<input
 							type="text"
 							placeholder="First Name"
@@ -58,6 +62,7 @@ const Signup = () => {
 							required
 							className="input"
 						/>
+						<label > Last Name:</label>
 						<input
 							type="text"
 							placeholder="Last Name"
@@ -67,6 +72,7 @@ const Signup = () => {
 							required
 							className="input"
 						/>
+						<label className="label" > Email:</label>
 						<input
 							type="email"
 							placeholder="Email"
@@ -76,6 +82,7 @@ const Signup = () => {
 							required
 							className="input"
 						/>
+						<label > Password:</label>
 						<input
 							type="password"
 							placeholder="Password"

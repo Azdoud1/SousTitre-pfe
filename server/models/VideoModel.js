@@ -21,6 +21,9 @@ const VideoSchema = new mongoose.Schema({
     },iduser: {
         type: String,
         trim: true,
+    },language: {
+        type: String,
+        trim: true,
     },
     text: {
       type: String,

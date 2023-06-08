@@ -4,13 +4,22 @@ form {
     padding: 20px;
 }
 .monrow {
-    margin-top: 60px;
+    margin-top: 10px;
 
 }
 
 
 .form-group {
     margin-bottom: 20px;
+}
+.eye {
+    margin-left:    600px;
+    margin-bottom: 20px;
+}
+.password-icon {
+
+    color: #47f61f;
+
 }
 
 label {

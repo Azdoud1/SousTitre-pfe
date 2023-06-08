@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./signIn.module.css";
+import customIcon from '../../image/Untitled_design.png';
 
 const Login = () => {
 	const [data, setData] = useState({ email: "", password: "" });
@@ -18,7 +19,7 @@ const Login = () => {
 			const { data: res } = await axios.post(url, data);
 			console.log(res.data)
 			localStorage.setItem("user", res.data._id);
-			window.location = "/user/";
+			window.location = "/user/upload/";
 		} catch (error) {
 			if (
 				error.response &&
@@ -36,6 +37,7 @@ const Login = () => {
 				<div className={styles.left}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Login to Your Account</h1>
+						<label className={styles.label}>Email:</label>
 						<input
 							type="email"
 							placeholder="Email"
@@ -44,6 +46,7 @@ const Login = () => {
 							value={data.email}
 							className={styles.input}
 						/>
+						<label>Password:</label>
 						<input
 							type="password"
 							placeholder="Password"
@@ -59,6 +62,7 @@ const Login = () => {
 					</form>
 				</div>
 				<div className={styles.right}>
+					<img src={customIcon} style={{ width: '50px', height: '40px', transform:'scale(6,8)',textAlign: 'center' , marginBottom: '100px' }} />
 					<h1>New Here ?</h1>
 					<Link to="/signup">
 						<button type="button" className={styles.white_btn}>

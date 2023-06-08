@@ -1,20 +1,17 @@
 import "./Navbar.css";
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, NavLink } from 'react-router-dom';
-import { BsPersonCircle} from 'react-icons/bs';
-import { FaVideo} from 'react-icons/fa';
+import { BsPersonCircle } from 'react-icons/bs';
 import axios from 'axios';
-
-
+import customIcon from '../../image/design-removebg-preview.png';
 
 const Navbar = () => {
-
 	const handleSignOut = () => {
 		// send a sign-out request to the backend API
 		axios.post('http://localhost:3000/api/signOut')
 			.then(response => {
-				// redirect the user to the home page
+				console.log(response)
 				window.location.href = '/';
 			})
 			.catch(error => {
@@ -22,29 +19,39 @@ const Navbar = () => {
 			});
 	};
 
-
-
 	return (
-		<nav className="navbar navbar-expand-lg   fixed-top">
+		<nav className="navbar navbar-expand-lg ">
+			<img src={customIcon} style={{ width: '45px', height: '40px', transform: 'scale(2)', marginLeft: '145px' }} />
 			<div className="container">
-				<Link className="navbar-brand" to="/user/"> <FaVideo className="icon1 " /> Sous Titre</Link>
-				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<Link className="navbar-brand text-black" to="/user/upload"><b>SUBTITLE</b></Link>
+				<button
+					className="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
 					<span className="navbar-toggler-icon"></span>
 				</button>
-				<div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-					<div className="navbar-nav">
-						<React.Fragment>
-							<NavLink className="nav-item nav-link "  to="/user/" exact="true">Home</NavLink>
-							<NavLink className="nav-item nav-link" to="/user/upload/">Upload</NavLink>
-							<NavLink className="nav-item nav-link" to="/user/videos/">Videos</NavLink>
-							<NavLink className="nav-item nav-link" to="/" onClick={handleSignOut}>Sign Out</NavLink>
-							<li className="nav-item">
-								<NavLink className="nav-link" to="/user/update/" >
-									<BsPersonCircle className="mr-5 icon" />
-								</NavLink>
-							</li>
-						</React.Fragment>
-					</div>
+				<div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+					<ul className="navbar-nav">
+						<li className="nav-item">
+							<NavLink className="nav-link text-black" to="/user/upload"><b>Upload</b></NavLink>
+						</li>
+						<li className="nav-item">
+							<NavLink className="nav-link text-black" to="/user/videos"><b>Videos</b></NavLink>
+						</li>
+						<li className="nav-item">
+							<NavLink className="nav-link text-black" to="/" onClick={handleSignOut}><b>Sign-Out</b></NavLink>
+						</li>
+						<li className="nav-item">
+							<NavLink className="nav-link" to="/user/update">
+								<BsPersonCircle className="mr-5 icon" />
+							</NavLink>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</nav>

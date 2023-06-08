@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Navbar from "../Navbar/Navbar";
 import "./update.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,6 +14,7 @@ const Profile = () => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         const fetchProfileData = async () => {
@@ -63,9 +65,14 @@ const Profile = () => {
             setUserData(data.user);
             setError("");
             console.log("Profile updated successfully");
+            window.location.reload();
         } catch (error) {
             setError("Failed to update profile");
         }
+    };
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -112,31 +119,58 @@ const Profile = () => {
                     </form>
                     <form className="col" onSubmit={handlePasswordChange}>
                         <div className="form-group">
-                            <label>Current Password:</label>
-                            <input
-                                type="password"
-                                value={currentPassword}
-                                onChange={(e) => setCurrentPassword(e.target.value)}
-                                className="form-control"
-                            />
+                            <label>
+                                Current Password:
+                                {showPassword ? (
+                                    <FiEyeOff onClick={toggleShowPassword} className="password-icon" />
+                                ) : (
+                                    <FiEye onClick={toggleShowPassword} className="password-icon" />
+                                )}
+                            </label>
+                            <div className="password-input">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={currentPassword}
+                                    onChange={(e) => setCurrentPassword(e.target.value)}
+                                    className="form-control"
+                                />
+                            </div>
                         </div>
                         <div className="form-group">
-                            <label>New Password:</label>
-                            <input
-                                type="password"
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                className="form-control"
-                            />
+                            <label>
+                                New Password:
+                                {showPassword ? (
+                                    <FiEyeOff onClick={toggleShowPassword} className="password-icon" />
+                                ) : (
+                                    <FiEye onClick={toggleShowPassword} className="password-icon" />
+                                )}
+                            </label>
+                            <div className="password-input">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    className="form-control"
+                                />
+                            </div>
                         </div>
                         <div className="form-group">
-                            <label>Confirm Password:</label>
-                            <input
-                                type="password"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="form-control"
-                            />
+                            <label>
+                                Confirm Password:
+                                {showPassword ? (
+                                    <FiEyeOff onClick={toggleShowPassword} className="password-icon" />
+                                ) : (
+                                    <FiEye onClick={toggleShowPassword} className="password-icon" />
+                                )}
+                            </label>
+                            <div className="password-input">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    className="form-control"
+                                />
+                            </div>
                         </div>
                         <button type="submit" className="btn btn-primary">
                             Change Password

@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React , {useState} from 'react'
 import { useGlobalContext } from '../../context/global';
 import Button from '../Button/Button';
 import Navbar from "../../../Navbar/Navbar";
@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios';
 
 function Upload() {
+    const [selectedLanguage, setSelectedLanguage] = useState('');
     const [video, setVideo] = React.useState(null);
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
@@ -31,6 +32,9 @@ function Upload() {
         setVideo(e.target.files[0])
         setLabel('Your Video: ' + e.target.files[0].name)
     }
+    const handleLanguageChange = (e) => {
+        setSelectedLanguage(e.target.value);
+      };
 
     const handleUpload = async (e) => {
         e.preventDefault();
@@ -42,7 +46,7 @@ function Upload() {
           formData.append('description', e.target.description.value);
           formData.append('video', e.target.video.files[0]);
           formData.append('iduser', localStorage.getItem('user'));
-      
+          formData.append('language', selectedLanguage); // Add the selected language
           try {
             const response = await axios.post('http://localhost:3000/api/upload', formData, {
               onUploadProgress: (progressEvent) => {
@@ -75,19 +79,34 @@ function Upload() {
 
     return (
         <div>
-            <Navbar />
-            <form onSubmit={handleUpload} action="api/upload" method="POST" encType="multipart/form-data">
+            <Navbar/>
+            <form  className="card-body" onSubmit={handleUpload} action="api/upload" method="POST" encType="multipart/form-data">
                 <div className="input-control">
                     <label htmlFor="title">Title</label>
                     <input
                         type="text"
                         name="title"
+                        cols="30"
                         id="title"
                         placeholder="Enter Title"
                         value={title}
                         onChange={handleTextChange('title')}
                     />
                 </div>
+                <div className="input-control">
+          <label htmlFor="language">Language</label>
+          <select
+            name="language"
+            id="language"
+            value={selectedLanguage}
+            onChange={handleLanguageChange}
+          >
+            <option value="">Select language</option>
+            <option value="fr-FR">French</option>
+            <option value="en-US">English</option>
+            <option value="es-ES">Spanish</option>
+          </select>
+        </div>
                 <div className="input-control">
                     <label htmlFor="description">Description</label>
                     <div className="description-input">
@@ -96,7 +115,7 @@ function Upload() {
                             placeholder="Enter description here..."
                             id="description"
                             cols="30"
-                            rows="6"
+                            rows="2"
                             value={description}
                             onChange={handleTextChange('description')}
                         ></textarea>
@@ -125,7 +144,7 @@ function Upload() {
                         <Button
                             name="Upload"
                             icon={<i className="fas fa-upload"></i>}
-                            bg="#00b894"
+                            bg="#1e1ed4"
                             type="submit"
                             disabled={loading}
                         />

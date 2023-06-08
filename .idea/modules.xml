@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SousTitre-Authentication-In-MERN.iml" filepath="$PROJECT_DIR$/.idea/SousTitre-Authentication-In-MERN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SousTitre-pfe.iml" filepath="$PROJECT_DIR$/.idea/SousTitre-pfe.iml" />
     </modules>
   </component>
 </project>

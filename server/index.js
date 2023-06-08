@@ -26,12 +26,8 @@ app.use(
 );
 
 
-
-
-
-
 // PUT route to update the user's profile
-app.use("/users", authUser);
+
 
 
 // middlewares
@@ -41,12 +37,13 @@ app.use(cors());
 // routes
 app.use("/api/signUp", userRoutes);
 app.use("/api/signIn", authRoutes);
+app.use("/users", authUser);
 
 
 
 //serve static files
-app.use('/public', express.static(path.join(__dirname, 'public')))
-readdirSync('./routes').map((route) => app.use('/api', require('./routes/' + route)))
+//app.use('/public', express.static(path.join(__dirname, 'public')))
+//readdirSync('./routes').map((route) => app.use('/api', require('./routes/' + route)))
 
 // configure session middleware
 app.use(session({
@@ -72,7 +69,6 @@ app.post('/api/signOut', (req, res) => {
         }
     });
 });
-
 
 
 

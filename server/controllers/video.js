@@ -14,7 +14,7 @@ exports.addVideo = async (req, res) => {
   const videoFileName = req.file.filename;
   const audioFileName = 'audio_' + videoFileName.split('.')[0] + '.wav';
   const audioPath = path.join(__dirname, '../public/audio', audioFileName);
-
+const language= req.body.language;
   try {
     ffmpeg(videoPath)
       .toFormat('wav')
@@ -37,7 +37,7 @@ exports.addVideo = async (req, res) => {
         // console.log(savedVideo);
         console.log(audioPath)
         // Spawn a child process to run the Python script for audio transcription
-        const pythonProcess = spawn('python', ['controllers/transcribe.py', audioPath]);
+        const pythonProcess = spawn('python', ['controllers/transcribe.py', audioPath,language]);
         
 
         const transcriptions = []; // Array to store individual transcriptions
@@ -60,6 +60,7 @@ exports.addVideo = async (req, res) => {
             title,
             description,
             iduser,
+            language,
             filename: videoFileName,
             videoUrl: videoPath,
             audioUrl: audioPath,

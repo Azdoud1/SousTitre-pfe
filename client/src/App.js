@@ -25,9 +25,7 @@ const App = () =>  {
 
                 <Routes>
 
-                    {user && <Route path="/user/" exact element={<><Navbar /><Home />  </>} />}
-
-                    {user && <Route path="/user/upload/" exact element={<Upload />} />}
+                    {user && <Route path="/user/upload" exact element={<Upload /> } />}
 
                     {user && <Route path='/user/videos/' element={<Videos />} />  }
 

@@ -7,6 +7,7 @@ import videojs from 'video.js';
 import Navbar from "../../../Navbar/Navbar";
 import './VideoPlayer.css';
 import { BsTrash } from "react-icons/bs";
+import jsPDF from 'jspdf';
 
 import 'videojs-contrib-quality-levels';
 
@@ -18,7 +19,7 @@ function VideoPlayer() {
     });
     const textareaRef = useRef(null);
     const [text, setText] = useState({ text: '' });
-    const [updateUI, setUpdateUI] = useState(false); 
+    const [updateUI, setUpdateUI] = useState(false);
 
     useEffect(() => {
         if (video) {
@@ -82,6 +83,7 @@ function VideoPlayer() {
             .then((res) => {
               console.log(res);
               setUpdateUI((prevState) => !prevState);
+                window.location.reload();
             })
             .catch((error) => {
               console.error("Error deleting video:", error);
@@ -100,6 +102,7 @@ function VideoPlayer() {
                     // Handle the response from the server
                     console.log(response.data); // Response from the server
                     // Perform additional actions as needed
+                    window.location.reload();
                 })
                 .catch((error) => {
                     // Handle errors
@@ -108,12 +111,22 @@ function VideoPlayer() {
                 });
         }
     };
+    const generatePDF = () => {
+        const doc = new jsPDF();
+        console.log("textareaRef:   "+textareaRef.current.value)
+        const textareaValue = textareaRef.current.value;
+        doc.text(textareaValue, 10, 10);
+        doc.save('texte.pdf');
+      };
 
     return (
-        <div >
+        <div>
             <Navbar />
             <div className="container mt-3 play">
                                 <div className="row">
+                                    <div className="back">
+                                        <Link to={'/user/videos/'}><i className="fas fa-arrow-left"></i>Back to Videos</Link>
+                                    </div>
                                     <div className="col-8">
                                 <div className="embed-responsive embed-responsive-16by9 mb-4" ref={videoConRef}>
                                     <VideoJS options={videoOptions} onReady={handlePlayerReady} />
@@ -130,20 +143,19 @@ function VideoPlayer() {
                                         onChange={(e) => {
                                             setText(e.target.value);
                                         }}
+                                        style={{ fontWeight: 'bold',fontSize: '16px' }}
                                     ></textarea>
+
                                 </div>
                                     </div>
+                                    <div className="text-center button card-body ">
+                                        <button className=" btn btn-danger bg-danger" onClick={RemoveVideo} >Delete</button>
+                                        <button className="btn btn-primary " onClick={modificationHandler}>Update</button>
+                                        <button className="btn btn-success pdf" onClick={generatePDF}>Download</button>
+                                    </div>
                                 </div>
-                                <div className="text-center button ">
-                                    <button className="btn btn-primary" onClick={modificationHandler}>
-                                        Update
-                                    </button>
-                                    <BsTrash className="icon" onClick={RemoveVideo} />
-                                </div>
-                                <div class="col-6" className="bottons">
-                <div className="back">
-                  <Link to={'/user/videos/'}><i className="fas fa-arrow-left"></i>Back to Videos</Link>
-                </div>
+
+                                <div  className="bottons col-6">
                 </div>
             </div>
         </div>
